@@ -1,14 +1,51 @@
-<xml id="toolbox" style="display: none">
-  <category name="Motion" colour="160">
-    <block type="move_forward"></block>
-    <block type="turn_right"></block>
-    <block type="turn_left"></block>
-  </category>
-  <category name="Looks" colour="290">
-    <block type="say"></block>
-    <block type="text"></block>
-  </category>
-  <category name="Actions" colour="230">
-    <block type="jump"></block>
-  </category>
-</xml>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Code Kidz</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+    #controls { padding: 10px; background: #eee; }
+    #blocklyDiv { height: 50vh; width: 100%; }
+    #canvas { flex: 1; background: #cfc; }
+    #run-button {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin-left: 8px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #run-button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button id="run-button">Run</button>
+  </div>
+  <div id="blocklyDiv"></div>
+  <canvas id="canvas" width="600" height="300"></canvas>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Core Blocks" colour="290">
+      <block type="move_forward"></block>
+      <block type="say"></block>
+    </category>
+    <category name="Custom Blocks" colour="120">
+      <!-- Dynamically generated custom blocks -->
+      <block type="custom_block_0"></block>
+      <block type="custom_block_1"></block>
+      <block type="custom_block_2"></block>
+      <!-- Add more in script.js -->
+    </category>
+  </xml>
+
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <script src="script.js"></script>
+  <script src="engine/runner.js"></script>
+</body>
+</html>
