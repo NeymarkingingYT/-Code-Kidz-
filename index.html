@@ -27,14 +27,19 @@
   
 </head>
 <body>
-  <button id="run-button">Run</button>
+
+   <button id="run-button">Run</button>
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  
   <header>
+    
     <h1>🧒 Code Kidz</h1>
     <div class="buttons">
       <button onclick="runCode()">Run</button>
       <button onclick="saveProject()">Save</button>
       <button onclick="loadProject()">Load</button>
     </div>
+    
   </header>
 
   <main>
@@ -42,8 +47,8 @@
     <canvas id="stage" width="480" height="360"></canvas>
   </main>
   
-
   <xml id="toolbox" style="display: none">
+    
   <category name="Events" colour="120">
     <block type="when_run"></block>
     <block type="broadcast"></block>
