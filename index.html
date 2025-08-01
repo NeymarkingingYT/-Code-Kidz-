@@ -4,10 +4,30 @@
   <meta charset="utf-8">
   <title>Code Kidz</title>
   <style>
-    body { margin: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
-    #controls { padding: 10px; background: #eee; }
-    #blocklyDiv { height: 50vh; width: 100%; }
-    #canvas { flex: 1; background: #cfc; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: sans-serif;
+    }
+
+    #controls {
+      padding: 10px;
+      background: #eee;
+    }
+
+    #blocklyDiv {
+      height: 50vh;
+      width: 100%;
+    }
+
+    #canvas {
+      height: 40vh;
+      background: #cfc;
+      width: 100%;
+    }
+
     #run-button {
       font-size: 16px;
       padding: 8px 16px;
@@ -18,6 +38,7 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     #run-button:hover {
       background: #45a049;
     }
@@ -27,8 +48,10 @@
   <div id="controls">
     <button id="run-button">Run</button>
   </div>
+
   <div id="blocklyDiv"></div>
-  <canvas id="canvas" width="600" height="300"></canvas>
+
+  <canvas id="canvas" width="600" height="200"></canvas>
 
   <xml id="toolbox" style="display: none">
     <category name="Core Blocks" colour="290">
@@ -36,11 +59,9 @@
       <block type="say"></block>
     </category>
     <category name="Custom Blocks" colour="120">
-      <!-- Dynamically generated custom blocks -->
       <block type="custom_block_0"></block>
       <block type="custom_block_1"></block>
       <block type="custom_block_2"></block>
-      <!-- Add more in script.js -->
     </category>
   </xml>
 
@@ -49,3 +70,4 @@
   <script src="engine/runner.js"></script>
 </body>
 </html>
+
