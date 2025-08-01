@@ -1,55 +1,43 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+:root {
+  --bg: white;
+  --fg: black;
+}
+
+.dark {
+  --bg: #111;
+  --fg: white;
 }
 
 header {
-  background: #20232a;
-  color: white;
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0.5em 1em;
+  background: var(--fg);
+  color: var(--bg);
 }
 
-header .buttons button {
-  margin-left: 10px;
-}
-
-main {
+#container {
   display: flex;
-  flex: 1;
-  overflow: hidden;
+  height: calc(100vh - 50px);
 }
 
 #blocklyDiv {
   height: 100%;
-  width: 50%;
+  width: 60%;
   background: #f0f0f0;
 }
 
 #stage {
-  background: #cceeff;
-  flex: 1;
-  display: block;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
 }
-
-
-#run-button {
-  font-size: 16px;
-  padding: 8px 16px;
-  margin: 10px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-#run-button:hover {
-  background: #45a049;
-}
-
