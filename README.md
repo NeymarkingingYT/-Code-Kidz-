@@ -2,8 +2,8 @@
 
 **Code Kidz** is a visual coding platform inspired by [Scratch](https://scratch.mit.edu/), designed to help kids learn programming by building interactive stories, animations, and games using block-based coding.
 
-> 🌐 Live Demo: [your-url-here](#)  
-> 📦 GitHub Repo: [https://github.com/YOUR_USERNAME/code-kidz](https://github.com/YOUR_USERNAME/code-kidz)
+> 🌐 Live Demo: **coming soon**
+> 📦 GitHub Repo: https://neymarkingingyt.github.io/-Code-Kidz-/
 
 ---
 
