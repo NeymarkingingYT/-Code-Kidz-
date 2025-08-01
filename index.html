@@ -23,23 +23,34 @@
   </main>
 
   // add block colors etc here
+  // coded by neymarkingingyt 
   
   <xml id="toolbox" style="display: none">
-    <category name="Events" colour="120">
-      <block type="controls_if"></block>
-      <block type="controls_repeat_ext"></block>
-    </category>
-    <category name="Motion" colour="210">
-      <block type="move_forward"></block>
-    </category>
-    <category name="Looks" colour="160">
-      <category name="My Blocks" colour="290">
-  <block type="say_hello"></block>
-</category>
+  <category name="Events" colour="120">
+    <block type="when_run"></block>
+    <block type="broadcast"></block>
+    <block type="when_receive"></block>
+  </category>
+  <category name="Motion" colour="210">
+    <block type="move_right"></block>
+    <block type="move_left"></block>
+    <block type="move_up"></block>
+    <block type="move_down"></block>
+    <block type="set_position"></block>
+  </category>
+  <category name="Looks" colour="160">
+    <block type="say_text"></block>
+    <block type="change_color"></block>
+  </category>
+  <category name="Sound" colour="20">
+    <block type="play_sound"></block>
+  </category>
+  <category name="Control" colour="60">
+    <block type="wait_seconds"></block>
+  </category>
+</xml>
 
-      <block type="change_sprite_color"></block>
-    </category>
-  </xml>
+// give credits pls
 
   <script src="script.js"></script>
   <script src="engine/runner.js"></script>
