@@ -1,97 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
   <title>Code Kidz</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-  
-<style>
-  #run-button {
-    font-size: 16px;
-    padding: 8px 16px;
-    margin: 10px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  #run-button:hover {
-    background: #45a049;
-  }
-</style>
-
-  
+  <style>
+    body { margin: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+    #controls { padding: 10px; background: #eee; }
+    #blocklyDiv { height: 50vh; width: 100%; }
+    #canvas { flex: 1; background: #cfc; }
+    #run-button {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin-left: 8px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #run-button:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 <body>
+  <div id="controls">
+    <button id="run-button">Run</button>
+  </div>
+  <div id="blocklyDiv"></div>
+  <canvas id="canvas" width="600" height="300"></canvas>
 
-   <button id="run-button">Run</button>
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-  
-  <header>
-    
-    <h1>🧒 Code Kidz</h1>
-    <div class="buttons">
-      <button onclick="runCode()">Run</button>
-      <button onclick="saveProject()">Save</button>
-      <button onclick="loadProject()">Load</button>
-    </div>
-    
-  </header>
-
-  <main>
-    <div id="blocklyDiv"></div>
-    <canvas id="stage" width="480" height="360"></canvas>
-  </main>
-  
   <xml id="toolbox" style="display: none">
-    
-  <category name="Events" colour="120">
-    <block type="when_run"></block>
-    <block type="broadcast"></block>
-    <block type="when_receive"></block>
-  </category>
-  <category name="Motion" colour="210">
-    <block type="move_right"></block>
-    <block type="move_left"></block>
-    <block type="move_up"></block>
-    <block type="move_down"></block>
-    <block type="set_position"></block>
-  </category>
-  <category name="Looks" colour="160">
-    <block type="say_text"></block>
-    <block type="change_color"></block>
-  </category>
-  <category name="Sound" colour="20">
-    <block type="play_sound"></block>
-  </category>
-  <category name="Control" colour="60">
-    <block type="wait_seconds"></block>
-    <block type="controls_repeat_ext"></block>
-    <block type="controls_if"></block>
-  </category>
-  <category name="Pen" colour="330">
-    <block type="pen_down"></block>
-    <block type="pen_up"></block>
-    <block type="set_pen_color"></block>
-  </category>
-  <category name="Variables" colour="330" custom="VARIABLE"></category>
-  <category name="Operators" colour="230">
-    <block type="math_number"></block>
-    <block type="math_add"></block>
-    <block type="is_touching_edge"></block>
-  </category>
-  <category name="Clones" colour="80">
-    <block type="create_clone"></block>
-    <block type="when_clone_start"></block>
-  </category>
-</xml>
+    <category name="Motion" colour="160">
+      <block type="move_forward"></block>
+    </category>
+    <category name="Looks" colour="290">
+      <block type="say"></block>
+      <block type="text"><field name="TEXT">Hello!</field></block>
+    </category>
+  </xml>
 
-
-  <script src="script.js"></script>
+  <script src="blockly/blockly.min.js"></script>
   <script src="engine/runner.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
