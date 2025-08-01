@@ -26,3 +26,22 @@ Blockly.JavaScript['move_forward'] = function(block) {
 Blockly.JavaScript['change_sprite_color'] = function(block) {
   return '// Change sprite color code goes here\n';
 };
+
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "say_hello",
+    "message0": "say %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "TEXT",
+        "text": "Hello!"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 160,
+    "tooltip": "Say something",
+    "helpUrl": ""
+  }
+]);
