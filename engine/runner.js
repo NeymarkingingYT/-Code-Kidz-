@@ -102,3 +102,20 @@ function createClone() {
 
 // Export runCode to global
 window.runCode = runCodeAsync;
+
+// run code
+
+// engine/runner.js — Full Version with Basic Blocks + runCode()
+
+function runCode() {
+  const code = Blockly.JavaScript.workspaceToCode(workspace);
+  try {
+    eval(code);
+  } catch (err) {
+    console.error("Error running code:", err);
+    alert("Error: " + err.message);
+  }
+}
+
+
+
