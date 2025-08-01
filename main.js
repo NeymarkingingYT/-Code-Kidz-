@@ -135,3 +135,82 @@ document.getElementById('uploadSound').addEventListener('change', (e) => {
     audio.play();
   }
 });
+
+Blockly.Blocks['event_whenclicked'] = {
+  init: function () {
+    this.appendDummyInput().appendField("when sprite clicked");
+    this.setNextStatement(true, null);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['move_steps'] = {
+  init: function () {
+    this.appendValueInput("STEPS").setCheck("Number").appendField("move");
+    this.appendDummyInput().appendField("steps");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['go_to'] = {
+  init: function () {
+    this.appendDummyInput().appendField("go to x:")
+      .appendField(new Blockly.FieldNumber(0), "X")
+      .appendField("y:")
+      .appendField(new Blockly.FieldNumber(0), "Y");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['set_sprite_size'] = {
+  init: function () {
+    this.appendValueInput("SIZE").setCheck("Number").appendField("set sprite size to");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(160);
+  }
+};
+
+Blockly.Blocks['play_sound'] = {
+  init: function () {
+    this.appendDummyInput().appendField("play sound");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['controls_repeat'] = {
+  init: function () {
+    this.appendValueInput("TIMES").setCheck("Number").appendField("repeat");
+    this.appendStatementInput("DO").appendField("do");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+  }
+};
+
+Blockly.Blocks['math_number'] = {
+  init: function () {
+    this.appendDummyInput().appendField(new Blockly.FieldNumber(0), "NUM");
+    this.setOutput(true, "Number");
+    this.setColour(200);
+  }
+};
+
+Blockly.Blocks['math_arithmetic'] = {
+  init: function () {
+    this.appendValueInput("A").setCheck("Number");
+    this.appendDummyInput().appendField(new Blockly.FieldDropdown([
+      ["+", "ADD"], ["-", "MINUS"], ["×", "MULTIPLY"], ["÷", "DIVIDE"]
+    ]), "OP");
+    this.appendValueInput("B").setCheck("Number");
+    this.setOutput(true, "Number");
+    this.setColour(200);
+  }
+};
+
