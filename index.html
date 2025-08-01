@@ -1,88 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Code Kidz</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
-
-  <style>
-  /* 🔲 Add black stroke to Blockly block text */
-  .blocklyText {
-    fill: white;                     /* Make text white */
-    stroke: black;                   /* Add black outline */
-    stroke-width: 1px;               /* Width of the outline */
-    paint-order: stroke;             /* Outline behind fill */
-  }
-</style>
-
-  
 <body>
-  <header>
-    <h1>Code Kidz</h1>
-    <button id="toggle-theme">🌓 Theme</button>
-  </header>
-
-  <main>
-    <div id="blocklyDiv"></div>
-    <xml id="toolbox" style="display: none">
-      
-      <category name="Events" colour="60">
-        <block type="when_run"></block>
-        <block type="when_key_pressed"></block>
-      </category>
-      <category name="Motion" colour="230">
-        <block type="move_steps"></block>
-        <block type="turn_right"></block>
-        <block type="turn_left"></block>
-        <block type="go_to_xy"></block>
-      </category>
-      <category name="Looks" colour="160">
-        <block type="say_message"></block>
-        <block type="change_color"></block>
-        <block type="set_size"></block>
-        <block type="hide_sprite"></block>
-        <block type="show_sprite"></block>
-      </category>
-      <category name="Sound" colour="20">
-        <block type="play_sound"></block>
-        <block type="stop_all_sounds"></block>
-      </category>
-      <category name="Control" colour="120">
-        <block type="controls_repeat_ext"></block>
-        <block type="wait_seconds"></block>
-        <block type="clone_sprite"></block>
-        <block type="controls_if"></block>
-        <block type="controls_if_else"></block>
-      </category>
-      <category name="Sensing" colour="290">
-        <block type="key_pressed"></block>
-        <block type="mouse_x"></block>
-        <block type="mouse_y"></block>
-        <block type="touching_mouse"></block>
-        <block type="when_cloned"></block>
-      </category>
-      <category name="Variables" colour="330">
-        <block type="set_variable"></block>
-        <block type="change_variable"></block>
-        <block type="get_variable"></block>
-      </category>
-      <category name="Operators" colour="210">
-        <block type="math_add"></block>
-        <block type="math_sub"></block>
-        <block type="math_mult"></block>
-        <block type="math_div"></block>
-        <block type="math_random"></block>
-        <block type="logic_compare"></block>
-      </category>
-    </xml>
-  </main>
-
-  <canvas id="stage" width="480" height="360"></canvas>
-
+  <div id="toolbar">
+    <label><input type="file" id="uploadSprite" accept="image/*" hidden><button onclick="document.getElementById('uploadSprite').click()">Upload Sprite</button></label>
+    <label><input type="file" id="uploadBackdrop" accept="image/*" hidden><button onclick="document.getElementById('uploadBackdrop').click()">Upload Backdrop</button></label>
+    <label><input type="file" id="uploadSound" accept="audio/*" hidden><button onclick="document.getElementById('uploadSound').click()">Upload Sound</button></label>
+  </div>
+  <div id="editor">
+    <div id="blocklyDiv" style="height: 480px; width: 60%; float: left;"></div>
+    <canvas id="stage" width="400" height="300" style="border: 1px solid #000; float: right;"></canvas>
+  </div>
+  <xml id="toolbox" style="display: none">
+    <category name="Events" colour="60">
+      <block type="when_run"></block>
+    </category>
+    <category name="Looks" colour="160">
+      <block type="say_message"></block>
+    </category>
+  </xml>
   <script src="main.js"></script>
 </body>
 </html>
