@@ -1,43 +1,39 @@
-<xml id="toolbox" style="display: none">
-  <category name="Events" colour="120">
-    <block type="when_run"></block>
-    <block type="broadcast"></block>
-    <block type="when_receive"></block>
-  </category>
-  <category name="Motion" colour="210">
-    <block type="move_right"></block>
-    <block type="move_left"></block>
-    <block type="move_up"></block>
-    <block type="move_down"></block>
-    <block type="set_position"></block>
-  </category>
-  <category name="Looks" colour="160">
-    <block type="say_text"></block>
-    <block type="change_color"></block>
-  </category>
-  <category name="Sound" colour="20">
-    <block type="play_sound"></block>
-  </category>
-  <category name="Control" colour="60">
-    <block type="wait_seconds"></block>
-    <block type="controls_repeat_ext"></block>
-    <block type="controls_if"></block>
-  </category>
-  <category name="Pen" colour="330">
-    <block type="pen_down"></block>
-    <block type="pen_up"></block>
-    <block type="set_pen_color"></block>
-  </category>
-  <category name="Variables" colour="330" custom="VARIABLE"></category>
-  <category name="Operators" colour="230">
-    <block type="math_number"></block>
-    <block type="math_add"></block>
-    <block type="is_touching_edge"></block>
-  </category>
-  <category name="Clones" colour="80">
-    <block type="create_clone"></block>
-    <block type="when_clone_start"></block>
-  </category>
-</xml>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Kidz</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Code Kidz</h1>
+    <button onclick="toggleTheme()">🌗</button>
+    <button onclick="saveProject()">💾 Save</button>
+    <button onclick="loadProject()">📂 Load</button>
+  </header>
 
+  <div id="container">
+    <div id="blocklyDiv"></div>
+    <div id="stage">
+      <canvas id="stageCanvas" width="480" height="360"></canvas>
+    </div>
+  </div>
 
+  <xml id="toolbox" style="display: none">
+    <category name="Events" colour="#FFBF00">
+      <block type="when_run"></block>
+    </category>
+    <category name="Motion" colour="#4C97FF">
+      <block type="move_steps"></block>
+    </category>
+    <category name="Control" colour="#FFAB19">
+      <block type="controls_repeat_ext"></block>
+    </category>
+  </xml>
+
+  <script src="main.js"></script>
+</body>
+</html>
