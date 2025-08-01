@@ -27,14 +27,31 @@
     <canvas id="stage" width="480" height="360"></canvas>
   </div>
 
-  <xml id="toolbox" style="display: none">
-    <category name="Events" colour="60">
-      <block type="when_run"></block>
-    </category>
-    <category name="Looks" colour="160">
-      <block type="say_message"></block>
-    </category>
-  </xml>
+<xml id="toolbox" style="display: none">
+  <category name="Events" colour="60">
+    <block type="when_run"></block>
+    <block type="event_whenclicked"></block>
+  </category>
+  <category name="Motion" colour="210">
+    <block type="move_steps"></block>
+    <block type="go_to"></block>
+  </category>
+  <category name="Looks" colour="160">
+    <block type="say_message"></block>
+    <block type="set_sprite_size"></block>
+  </category>
+  <category name="Sound" colour="20">
+    <block type="play_sound"></block>
+  </category>
+  <category name="Control" colour="120">
+    <block type="controls_repeat"></block>
+  </category>
+  <category name="Operators" colour="200">
+    <block type="math_number"></block>
+    <block type="math_arithmetic"></block>
+  </category>
+</xml>
+
 
   <script src="main.js"></script>
 </body>
