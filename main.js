@@ -50,6 +50,70 @@ document.getElementById('uploadSprite').addEventListener('change', (e) => {
   }
 });
 
+let sprite = null;
+let spriteX = 100;
+let spriteY = 100;
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+const canvas = document.getElementById('stage');
+const ctx = canvas.getContext('2d');
+
+// Updated sprite loader
+document.getElementById('uploadSprite').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const img = new Image();
+    img.onload = () => {
+      sprite = img;
+      drawStage();
+    };
+    img.src = URL.createObjectURL(file);
+  }
+});
+
+function drawStage() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (sprite) ctx.drawImage(sprite, spriteX, spriteY, 100, 100);
+}
+
+// Dragging logic
+canvas.addEventListener('mousedown', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  if (
+    sprite &&
+    mouseX >= spriteX &&
+    mouseX <= spriteX + 100 &&
+    mouseY >= spriteY &&
+    mouseY <= spriteY + 100
+  ) {
+    dragging = true;
+    offsetX = mouseX - spriteX;
+    offsetY = mouseY - spriteY;
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  if (dragging) {
+    const rect = canvas.getBoundingClientRect();
+    spriteX = e.clientX - rect.left - offsetX;
+    spriteY = e.clientY - rect.top - offsetY;
+    drawStage();
+  }
+});
+
+canvas.addEventListener('mouseup', () => {
+  dragging = false;
+});
+
+canvas.addEventListener('mouseleave', () => {
+  dragging = false;
+});
+
+
 // Upload Backdrop
 document.getElementById('uploadBackdrop').addEventListener('change', (e) => {
   const file = e.target.files[0];
