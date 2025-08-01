@@ -2,93 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code Kidz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap">
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 </head>
-  <script src="main.js"></script>
 <body>
-  <div id="customBlockModal" class="modal">
-  <div class="modal-content">
-    <h2>Create Custom Block</h2>
-    <input type="text" id="procName" placeholder="block name" />
-    <button onclick="createCustomBlock()">Create</button>
-    <button onclick="closeModal()">Cancel</button>
-  </div>
-</div>
-
   <header>
     <h1>Code Kidz</h1>
-    <div class="buttons">
-        <button onclick="toggleTheme()">🌗 Theme</button>
-    <button onclick="saveProject()">💾 Save</button>
-    <button onclick="loadProject()">📂 Load</button>
-    <button onclick="openModal()">➕ Make a Block</button> <!-- 👈 Block Maker -->
-    </div>
+    <button id="toggle-theme">🌓 Theme</button>
   </header>
 
   <main>
     <div id="blocklyDiv"></div>
-    <div id="stage">
-      <canvas id="stageCanvas" width="480" height="360"></canvas>
-    </div>
+    <xml id="toolbox" style="display: none">
+      <category name="Events" colour="60">
+        <block type="when_run"></block>
+        <block type="when_key_pressed"></block>
+      </category>
+      <category name="Motion" colour="230">
+        <block type="move_steps"></block>
+        <block type="turn_right"></block>
+        <block type="turn_left"></block>
+        <block type="go_to_xy"></block>
+      </category>
+      <category name="Looks" colour="160">
+        <block type="say_message"></block>
+        <block type="change_color"></block>
+        <block type="set_size"></block>
+        <block type="hide_sprite"></block>
+        <block type="show_sprite"></block>
+      </category>
+      <category name="Sound" colour="20">
+        <block type="play_sound"></block>
+        <block type="stop_all_sounds"></block>
+      </category>
+      <category name="Control" colour="120">
+        <block type="controls_repeat_ext"></block>
+        <block type="wait_seconds"></block>
+      </category>
+      <category name="Sensing" colour="290">
+        <block type="key_pressed"></block>
+        <block type="mouse_x"></block>
+        <block type="mouse_y"></block>
+      </category>
+      <category name="Variables" colour="330">
+        <block type="set_variable"></block>
+        <block type="change_variable"></block>
+        <block type="get_variable"></block>
+      </category>
+      <category name="Operators" colour="210">
+        <block type="math_add"></block>
+        <block type="math_sub"></block>
+        <block type="math_mult"></block>
+        <block type="math_div"></block>
+        <block type="math_random"></block>
+        <block type="logic_compare"></block>
+      </category>
+    </xml>
   </main>
 
-<xml id="toolbox" style="display: none">
-  <category name="Events" colour="#FFBF00">
-    <block type="when_run"></block>
-    <block type="when_key_pressed"></block>
-  </category>
-
-  <category name="Motion" colour="#4C97FF">
-    <block type="move_steps"></block>
-    <block type="turn_right"></block>
-    <block type="turn_left"></block>
-    <block type="go_to_xy"></block>
-  </category>
-
-  <category name="Looks" colour="#9966CC">
-    <block type="say_message"></block>
-    <block type="change_color"></block>
-    <block type="set_size"></block>
-    <block type="hide_sprite"></block>
-    <block type="show_sprite"></block>
-  </category>
-
-  <category name="Sound" colour="#D65CD6">
-    <block type="play_sound"></block>
-    <block type="stop_all_sounds"></block>
-  </category>
-
-  <category name="Control" colour="#FFAB19">
-    <block type="controls_repeat_ext"></block>
-    <block type="wait_seconds"></block>
-  </category>
-
-  <category name="Sensing" colour="#5CB1D6">
-    <block type="key_pressed"></block>
-    <block type="mouse_x"></block>
-    <block type="mouse_y"></block>
-  </category>
-
-  <category name="Operators" colour="#59C059">
-    <block type="math_add"></block>
-    <block type="math_sub"></block>
-    <block type="math_mult"></block>
-    <block type="math_div"></block>
-    <block type="math_random"></block>
-    <block type="logic_compare"></block>
-  </category>
-
-  <category name="Variables" colour="#FF8C1A">
-    <block type="set_variable"></block>
-    <block type="change_variable"></block>
-    <block type="get_variable"></block>
-  </category>
-</xml>
-
+  <canvas id="stage" width="480" height="360"></canvas>
 
   <script src="main.js"></script>
 </body>
