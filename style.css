@@ -4,6 +4,10 @@ body {
   padding: 20px;
 }
 
+#blocklyDiv {
+  margin-bottom: 20px;
+}
+
 #stage {
   margin-top: 20px;
   border: 2px solid #ccc;
