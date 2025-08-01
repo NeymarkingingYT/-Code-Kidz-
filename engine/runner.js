@@ -187,3 +187,174 @@ Blockly.JavaScript['when_receive'] = (block) => {
   const msg = block.getFieldValue('MSG');
   return `// handler for receiving message: ${msg}\n`;
 };
+
+// === Extra Blocks ===
+
+// ==== Pen Drawing ====
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "pen_down",
+    "message0": "pen down",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 330
+  },
+  {
+    "type": "pen_up",
+    "message0": "pen up",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 330
+  },
+  {
+    "type": "set_pen_color",
+    "message0": "set pen color to %1",
+    "args0": [
+      {
+        "type": "field_colour",
+        "name": "COLOR",
+        "colour": "#ff0000"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 330
+  }
+]);
+
+Blockly.JavaScript['pen_down'] = () => `penDown = true;\n`;
+Blockly.JavaScript['pen_up'] = () => `penDown = false;\n`;
+Blockly.JavaScript['set_pen_color'] = (block) => {
+  const color = block.getFieldValue('COLOR');
+  return `penColor = "${color}";\n`;
+};
+
+// ==== Logic & Math ====
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "is_touching_edge",
+    "message0": "sprite is touching edge?",
+    "output": "Boolean",
+    "colour": 210
+  },
+  {
+    "type": "math_number",
+    "message0": "%1",
+    "args0": [{ "type": "field_number", "name": "NUM", "value": 0 }],
+    "output": "Number",
+    "colour": 230
+  },
+  {
+    "type": "math_add",
+    "message0": "%1 + %2",
+    "args0": [
+      { "type": "input_value", "name": "A" },
+      { "type": "input_value", "name": "B" }
+    ],
+    "output": "Number",
+    "colour": 230
+  }
+]);
+
+Blockly.JavaScript['is_touching_edge'] = () => {
+  return `(spriteX <= 0 || spriteX >= 432 || spriteY <= 0 || spriteY >= 312)`;
+};
+Blockly.JavaScript['math_number'] = (block) => {
+  const num = block.getFieldValue('NUM');
+  return [num, Blockly.JavaScript.ORDER_ATOMIC];
+};
+Blockly.JavaScript['math_add'] = (block) => {
+  const a = Blockly.JavaScript.valueToCode(block, 'A', Blockly.JavaScript.ORDER_ADDITION) || '0';
+  const b = Blockly.JavaScript.valueToCode(block, 'B', Blockly.JavaScript.ORDER_ADDITION) || '0';
+  return [`(${a} + ${b})`, Blockly.JavaScript.ORDER_ADDITION];
+};
+
+// ==== Variables ====
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "set_variable",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "score"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 330
+  },
+  {
+    "type": "change_variable",
+    "message0": "change %1 by %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "score"
+      },
+      {
+        "type": "input_value",
+        "name": "DELTA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 330
+  }
+]);
+
+Blockly.JavaScript['set_variable'] = function(block) {
+  const varName = block.getField('VAR').getText();
+  const val = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+  return `${varName} = ${val};\n`;
+};
+
+Blockly.JavaScript['change_variable'] = function(block) {
+  const varName = block.getField('VAR').getText();
+  const delta = Blockly.JavaScript.valueToCode(block, 'DELTA', Blockly.JavaScript.ORDER_ADDITION) || '0';
+  return `${varName} += ${delta};\n`;
+};
+
+// ==== Loops and Ifs ====
+Blockly.JavaScript['controls_repeat_ext'] = function(block) {
+  const repeats = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+  const branch = Blockly.JavaScript.statementToCode(block, 'DO');
+  return `for (let i = 0; i < ${repeats}; i++) {\n${branch}}\n`;
+};
+
+Blockly.JavaScript['controls_if'] = function(block) {
+  const cond = Blockly.JavaScript.valueToCode(block, 'IF0', Blockly.JavaScript.ORDER_NONE) || 'false';
+  const branch = Blockly.JavaScript.statementToCode(block, 'DO0');
+  return `if (${cond}) {\n${branch}}\n`;
+};
+
+// ==== Clone Blocks ====
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "create_clone",
+    "message0": "create clone of sprite",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 80
+  },
+  {
+    "type": "when_clone_start",
+    "message0": "when clone starts",
+    "nextStatement": null,
+    "colour": 80
+  }
+]);
+
+Blockly.JavaScript['create_clone'] = () => {
+  return `createClone();\n`;
+};
+
+Blockly.JavaScript['when_clone_start'] = () => {
+  return `// clone start handler\n`;
+};
