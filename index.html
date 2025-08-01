@@ -1,43 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Code Kidz</title>
-
-  <!-- Blockly CDN -->
-  <script src="https://unpkg.com/blockly/blockly.main.js"></script>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Scripts -->
-  <script defer src="blocks.js"></script>
-  <script defer src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 </head>
-
 <body>
-  <!-- Header -->
-  <div class="header">
-    <h1 class="title">Code Kidz</h1>
+  <h1>Code Kidz</h1>
+  <div id="blocklyDiv" style="height: 400px; width: 600px;"></div>
+  <button onclick="runCode()">Run</button>
+  <div id="stage">
+    <img id="sprite" src="assets/sprites/cat.png" alt="sprite">
   </div>
-
-  <!-- Upload Buttons -->
-  <div class="upload-buttons">
-    <button onclick="uploadSprite()">Upload Sprite</button>
-    <button onclick="uploadBackdrop()">Upload Backdrop</button>
-    <button onclick="uploadSound()">Upload Sound</button>
-  </div>
-
-  <!-- Blockly Toolbox -->
-  <xml id="toolbox" style="display: none">
-    <!-- This will be populated by blocks.js -->
-  </xml>
-
-  <!-- Blockly Workspace -->
-  <div id="blocklyDiv"></div>
+  <script src="blocks.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
