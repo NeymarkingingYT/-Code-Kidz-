@@ -36,3 +36,20 @@ main {
   flex: 1;
   display: block;
 }
+
+
+#run-button {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#run-button:hover {
+  background: #45a049;
+}
+
