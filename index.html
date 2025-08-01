@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 </head>
+
+  <style>
+  /* 🔲 Add black stroke to Blockly block text */
+  .blocklyText {
+    fill: white;                     /* Make text white */
+    stroke: black;                   /* Add black outline */
+    stroke-width: 1px;               /* Width of the outline */
+    paint-order: stroke;             /* Outline behind fill */
+  }
+</style>
+
+  
 <body>
   <header>
     <h1>Code Kidz</h1>
