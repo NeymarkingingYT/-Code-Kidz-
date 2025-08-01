@@ -1,54 +1,33 @@
-// Blockly setup
+// Blockly init
 const workspace = Blockly.inject('blocklyDiv', {
-  toolbox: document.getElementById('toolbox')
+  toolbox: document.getElementById('toolbox'),
+  theme: Blockly.Themes.Classic
 });
 
-// Dark/light mode
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-}
-
-// Save/load project
-function saveProject() {
-  const xml = Blockly.Xml.workspaceToDom(workspace);
-  const text = Blockly.Xml.domToText(xml);
-  localStorage.setItem('codeKidzProject', text);
-  alert('Project saved!');
-}
-
-function loadProject() {
-  const text = localStorage.getItem('codeKidzProject');
-  if (text) {
-    const xml = Blockly.Xml.textToDom(text);
-    Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
-    alert('Project loaded!');
-  } else {
-    alert('No saved project found.');
-  }
-}
-
-// Sprite stage setup
+// Sprite canvas setup
 const canvas = document.getElementById('stageCanvas');
 const ctx = canvas.getContext('2d');
 const spriteImg = new Image();
 spriteImg.src = 'assets/sprites/cat.png';
 
 let spriteX = 100, spriteY = 100;
+let dragging = false;
 
 spriteImg.onload = () => drawSprite();
 
+function drawSprite() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(spriteImg, spriteX, spriteY, 48, 48);
+}
+
 canvas.addEventListener('mousedown', (e) => {
   const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left, y = e.clientY - rect.top;
-  if (
-    x > spriteX && x < spriteX + 48 &&
-    y > spriteY && y < spriteY + 48
-  ) {
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  if (x >= spriteX && x <= spriteX + 48 && y >= spriteY && y <= spriteY + 48) {
     dragging = true;
   }
 });
-
-let dragging = false;
 
 canvas.addEventListener('mousemove', (e) => {
   if (dragging) {
@@ -63,11 +42,31 @@ canvas.addEventListener('mouseup', () => {
   dragging = false;
 });
 
-function drawSprite() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(spriteImg, spriteX, spriteY, 48, 48);
+// Theme switcher
+function toggleTheme() {
+  document.body.classList.toggle('dark');
 }
 
+// Save/load project
+function saveProject() {
+  const xml = Blockly.Xml.workspaceToDom(workspace);
+  const text = Blockly.Xml.domToText(xml);
+  localStorage.setItem('codeKidzProject', text);
+  alert("✅ Project saved!");
+}
+
+function loadProject() {
+  const text = localStorage.getItem('codeKidzProject');
+  if (text) {
+    const xml = Blockly.Xml.textToDom(text);
+    Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
+    alert("✅ Project loaded!");
+  } else {
+    alert("⚠️ No saved project found.");
+  }
+}
+
+// Custom blocks
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "when_run",
