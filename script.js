@@ -1,3 +1,8 @@
+let penDown = false;
+let penColor = "#000000";
+let clones = [];
+
+
 let workspace = Blockly.inject('blocklyDiv', {
   toolbox: document.getElementById('toolbox')
 });
@@ -12,6 +17,16 @@ function drawStage() {
   const img = new Image();
   img.src = 'assets/sprites/cat.png';
   img.onload = () => ctx.drawImage(img, spriteX, spriteY, 48, 48);
+
+  if (penDown) {
+  ctx.fillStyle = penColor;
+  ctx.fillRect(spriteX + 20, spriteY + 20, 2, 2); // draws a dot
+}
+  clones.forEach(clone => {
+  ctx.fillStyle = "gray";
+  ctx.fillRect(clone.x, clone.y, 48, 48);
+});
+
 }
 drawStage();
 
@@ -44,3 +59,9 @@ function loadProject() {
     alert("Project loaded!");
   }
 }
+
+function createClone() {
+  clones.push({ x: spriteX, y: spriteY });
+  drawStage();
+}
+
