@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Code Kidz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="toolbar">
-    <label><input type="file" id="uploadSprite" accept="image/*" hidden><button onclick="document.getElementById('uploadSprite').click()">Upload Sprite</button></label>
-    <label><input type="file" id="uploadBackdrop" accept="image/*" hidden><button onclick="document.getElementById('uploadBackdrop').click()">Upload Backdrop</button></label>
-    <label><input type="file" id="uploadSound" accept="audio/*" hidden><button onclick="document.getElementById('uploadSound').click()">Upload Sound</button></label>
+    <h1>Code Kidz</h1>
+    <div>
+      <input type="file" id="uploadSprite" accept="image/*" hidden />
+      <button onclick="document.getElementById('uploadSprite').click()">Upload Sprite</button>
+
+      <input type="file" id="uploadBackdrop" accept="image/*" hidden />
+      <button onclick="document.getElementById('uploadBackdrop').click()">Upload Backdrop</button>
+
+      <input type="file" id="uploadSound" accept="audio/*" hidden />
+      <button onclick="document.getElementById('uploadSound').click()">Upload Sound</button>
+    </div>
   </div>
+
   <div id="editor">
-    <div id="blocklyDiv" style="height: 480px; width: 60%; float: left;"></div>
-    <canvas id="stage" width="400" height="300" style="border: 1px solid #000; float: right;"></canvas>
+    <div id="blocklyDiv"></div>
+    <canvas id="stage" width="400" height="300"></canvas>
   </div>
+
   <xml id="toolbox" style="display: none">
     <category name="Events" colour="60">
       <block type="when_run"></block>
@@ -25,6 +35,7 @@
       <block type="say_message"></block>
     </category>
   </xml>
+
   <script src="main.js"></script>
 </body>
 </html>
