@@ -25,17 +25,59 @@
     </div>
   </main>
 
-  <xml id="toolbox" style="display: none">
-    <category name="Events" colour="#FFBF00">
-      <block type="when_run"></block>
-    </category>
-    <category name="Motion" colour="#4C97FF">
-      <block type="move_steps"></block>
-    </category>
-    <category name="Control" colour="#FFAB19">
-      <block type="controls_repeat_ext"></block>
-    </category>
-  </xml>
+<xml id="toolbox" style="display: none">
+  <category name="Events" colour="#FFBF00">
+    <block type="when_run"></block>
+    <block type="when_key_pressed"></block>
+  </category>
+
+  <category name="Motion" colour="#4C97FF">
+    <block type="move_steps"></block>
+    <block type="turn_right"></block>
+    <block type="turn_left"></block>
+    <block type="go_to_xy"></block>
+  </category>
+
+  <category name="Looks" colour="#9966CC">
+    <block type="say_message"></block>
+    <block type="change_color"></block>
+    <block type="set_size"></block>
+    <block type="hide_sprite"></block>
+    <block type="show_sprite"></block>
+  </category>
+
+  <category name="Sound" colour="#D65CD6">
+    <block type="play_sound"></block>
+    <block type="stop_all_sounds"></block>
+  </category>
+
+  <category name="Control" colour="#FFAB19">
+    <block type="controls_repeat_ext"></block>
+    <block type="wait_seconds"></block>
+  </category>
+
+  <category name="Sensing" colour="#5CB1D6">
+    <block type="key_pressed"></block>
+    <block type="mouse_x"></block>
+    <block type="mouse_y"></block>
+  </category>
+
+  <category name="Operators" colour="#59C059">
+    <block type="math_add"></block>
+    <block type="math_sub"></block>
+    <block type="math_mult"></block>
+    <block type="math_div"></block>
+    <block type="math_random"></block>
+    <block type="logic_compare"></block>
+  </category>
+
+  <category name="Variables" colour="#FF8C1A">
+    <block type="set_variable"></block>
+    <block type="change_variable"></block>
+    <block type="get_variable"></block>
+  </category>
+</xml>
+
 
   <script src="main.js"></script>
 </body>
