@@ -2,17 +2,48 @@ body {
   font-family: 'Luckiest Guy', cursive;
   margin: 0;
   background: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #toolbar {
-  padding: 10px;
-  background-color: #333;
-  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+  color: black;
+  padding: 10px 20px;
+}
+
+#toolbar h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+#editor {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+#blocklyDiv {
+  flex: 1;
+  height: 100%;
+}
+
+#stage {
+  width: 400px;
+  height: 300px;
+  border: 2px solid #000;
+  margin: 20px;
+  background-color: #fff;
 }
 
 button {
-  margin-right: 10px;
   font-family: 'Luckiest Guy', cursive;
+  padding: 8px 12px;
+  margin-left: 8px;
 }
 
 .blocklyText {
