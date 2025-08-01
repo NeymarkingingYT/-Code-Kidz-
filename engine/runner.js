@@ -1,4 +1,4 @@
-// engine/runner.js — Full Version Restored
+// engine/runner.js — Base Game Engine with Blockly Block Logic
 
 function runCode() {
   const code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -24,14 +24,36 @@ function drawSprite() {
 
 drawSprite();
 
-// BLOCK DEFINITIONS
+// BASIC BLOCK DEFINITIONS
+const blockDefs = [];
+const blockGenerators = {};
+
+for (let i = 0; i < 500; i++) {
+  const blockId = `custom_block_${i}`;
+  blockDefs.push({
+    type: blockId,
+    message0: `custom block ${i}`,
+    previousStatement: null,
+    nextStatement: null,
+    colour: (i % 360)
+  });
+
+  blockGenerators[blockId] = function () {
+    return `console.log(\"Running block ${i}\");\n`;
+  };
+}
+
+Blockly.defineBlocksWithJsonArray(blockDefs);
+for (let blockId in blockGenerators) {
+  Blockly.JavaScript[blockId] = blockGenerators[blockId];
+}
+
+// Manual key blocks
 Blockly.defineBlocksWithJsonArray([
   {
     "type": "move_forward",
     "message0": "move forward %1 steps",
-    "args0": [
-      { "type": "field_number", "name": "STEPS", "value": 10 }
-    ],
+    "args0": [ { "type": "field_number", "name": "STEPS", "value": 10 } ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": 160
@@ -39,33 +61,10 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "say",
     "message0": "say %1",
-    "args0": [
-      { "type": "input_value", "name": "TEXT" }
-    ],
+    "args0": [ { "type": "input_value", "name": "TEXT" } ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": 290
-  },
-  {
-    "type": "turn_right",
-    "message0": "turn right",
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 160
-  },
-  {
-    "type": "turn_left",
-    "message0": "turn left",
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 160
-  },
-  {
-    "type": "jump",
-    "message0": "jump",
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 230
   }
 ]);
 
@@ -77,16 +76,4 @@ Blockly.JavaScript['move_forward'] = function(block) {
 Blockly.JavaScript['say'] = function(block) {
   const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC) || '""';
   return `alert(${text});\n`;
-};
-
-Blockly.JavaScript['turn_right'] = function() {
-  return `spriteX += 10;\ndrawSprite();\n`;
-};
-
-Blockly.JavaScript['turn_left'] = function() {
-  return `spriteX -= 10;\ndrawSprite();\n`;
-};
-
-Blockly.JavaScript['jump'] = function() {
-  return `spriteY -= 30;\ndrawSprite();\nspriteY += 30;\ndrawSprite();\n`;
 };
