@@ -1,90 +1,73 @@
-let workspace = Blockly.inject('blocklyDiv', {
-  toolbox: document.getElementById('toolbox')
+// Setup Blockly
+const workspace = Blockly.inject('blocklyDiv', {
+  toolbox: document.getElementById('toolbox'),
 });
 
-Blockly.defineBlocksWithJsonArray([
-  {
-    "type": "when_run",
-    "message0": "when run",
-    "nextStatement": null,
-    "colour": 60,
-    "hat": "cap"
-  },
-  {
-    "type": "say_message",
-    "message0": "say %1 for %2 seconds",
-    "args0": [
-      { "type": "field_input", "name": "MSG", "text": "hello" },
-      { "type": "field_number", "name": "TIME", "value": 2 }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 160
+// Create a simple "say" block
+Blockly.Blocks['say_message'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("say")
+      .appendField(new Blockly.FieldTextInput("Hello!"), "MESSAGE");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Says something.");
   }
-]);
+};
 
-// Canvas logic
-const stage = document.getElementById("stage");
-const ctx = stage.getContext("2d");
+Blockly.JavaScript['say_message'] = function (block) {
+  const msg = block.getFieldValue('MESSAGE');
+  return `alert("${msg}");\n`;
+};
 
-let currentSprite = null;
-let backdropImage = null;
-let sounds = [];
-
-function addSpriteFromImage(img) {
-  currentSprite = img;
-  renderStage();
-}
-
-function setStageBackdrop(img) {
-  backdropImage = img;
-  renderStage();
-}
-
-function addSoundToCurrentSprite(audio) {
-  sounds.push(audio);
-  audio.play(); // Optional: auto-play once
-}
-
-function renderStage() {
-  ctx.clearRect(0, 0, stage.width, stage.height);
-  if (backdropImage) {
-    ctx.drawImage(backdropImage, 0, 0, stage.width, stage.height);
+// Simple "when run" event block
+Blockly.Blocks['when_run'] = {
+  init: function () {
+    this.appendDummyInput().appendField("when run");
+    this.setNextStatement(true, null);
+    this.setColour(60);
+    this.setTooltip("Runs the stack when clicked.");
   }
-  if (currentSprite) {
-    ctx.drawImage(currentSprite, 150, 100, 100, 100);
-  }
-}
+};
 
-// Upload handlers
-function loadImageFromFile(file, callback) {
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const img = new Image();
-    img.onload = () => callback(img);
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
+Blockly.JavaScript['when_run'] = function (block) {
+  const next = Blockly.JavaScript.statementToCode(block, 'DO');
+  return `${next}`;
+};
 
+// Upload Sprite
 document.getElementById('uploadSprite').addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (file) {
-    loadImageFromFile(file, addSpriteFromImage);
+    const img = new Image();
+    img.onload = () => {
+      const ctx = document.getElementById('stage').getContext('2d');
+      ctx.clearRect(0, 0, 480, 360);
+      ctx.drawImage(img, 50, 50, 100, 100);
+    };
+    img.src = URL.createObjectURL(file);
   }
 });
 
+// Upload Backdrop
 document.getElementById('uploadBackdrop').addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (file) {
-    loadImageFromFile(file, setStageBackdrop);
+    const img = new Image();
+    img.onload = () => {
+      const ctx = document.getElementById('stage').getContext('2d');
+      ctx.drawImage(img, 0, 0, 480, 360);
+    };
+    img.src = URL.createObjectURL(file);
   }
 });
 
+// Upload Sound
 document.getElementById('uploadSound').addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (file) {
     const audio = new Audio(URL.createObjectURL(file));
-    addSoundToCurrentSprite(audio);
+    audio.play();
   }
 });
