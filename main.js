@@ -1,6 +1,10 @@
 import './blocks.js';
 
 const workspace = Blockly.inject('blocklyDiv', {
+  toolbox: document.getElementById('toolbox')
+});
+
+const workspace = Blockly.inject('blocklyDiv', {
   toolbox: document.getElementById('toolbox'),
   scrollbars: true,
   trashcan: true
