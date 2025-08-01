@@ -79,4 +79,48 @@ Blockly.defineBlocksWithJsonArray([
   { "type": "math_div", "message0": "%1 ÷ %2", "args0": [{ "type": "input_value", "name": "A" }, { "type": "input_value", "name": "B" }], "output": "Number", "colour": 210 },
   { "type": "math_random", "message0": "random from %1 to %2", "args0": [{ "type": "field_number", "name": "FROM", "value": 1 }, { "type": "field_number", "name": "TO", "value": 10 }], "output": "Number", "colour": 210 },
   { "type": "logic_compare", "message0": "%1 %2 %3", "args0": [{ "type": "input_value", "name": "A" }, { "type": "field_dropdown", "name": "OP", "options": [["=", "EQ"], ["<", "LT"], [">", "GT"]] }, { "type": "input_value", "name": "B" }], "output": "Boolean", "colour": 210 }
+  // --- SMARTER BLOCKS ---
+{
+  "type": "controls_if",
+  "message0": "if %1 then",
+  "args0": [{ "type": "input_value", "name": "IF0", "check": "Boolean" }],
+  "message1": "%1",
+  "args1": [{ "type": "input_statement", "name": "DO0" }],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120
+},
+{
+  "type": "controls_if_else",
+  "message0": "if %1 then",
+  "args0": [{ "type": "input_value", "name": "IF0", "check": "Boolean" }],
+  "message1": "%1",
+  "args1": [{ "type": "input_statement", "name": "DO0" }],
+  "message2": "else",
+  "args2": [{ "type": "input_statement", "name": "ELSE" }],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120
+},
+{
+  "type": "clone_sprite",
+  "message0": "create clone of myself",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 290
+},
+{
+  "type": "when_cloned",
+  "message0": "when I start as a clone",
+  "nextStatement": null,
+  "colour": 60,
+  "hat": "cap"
+},
+{
+  "type": "touching_mouse",
+  "message0": "touching mouse?",
+  "output": "Boolean",
+  "colour": 290
+}
+
 ]);
