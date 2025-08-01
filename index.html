@@ -4,23 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code Kidz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 </head>
 <body>
   <header>
     <h1>Code Kidz</h1>
-    <button onclick="toggleTheme()">🌗</button>
-    <button onclick="saveProject()">💾 Save</button>
-    <button onclick="loadProject()">📂 Load</button>
+    <div class="buttons">
+      <button onclick="toggleTheme()">🌗 Theme</button>
+      <button onclick="saveProject()">💾 Save</button>
+      <button onclick="loadProject()">📂 Load</button>
+    </div>
   </header>
 
-  <div id="container">
+  <main>
     <div id="blocklyDiv"></div>
     <div id="stage">
       <canvas id="stageCanvas" width="480" height="360"></canvas>
     </div>
-  </div>
+  </main>
 
   <xml id="toolbox" style="display: none">
     <category name="Events" colour="#FFBF00">
