@@ -1,85 +1,79 @@
-let workspace = Blockly.inject('blocklyDiv', {
-  toolbox: document.getElementById('toolbox')
+import './blocks.js';
+
+const workspace = Blockly.inject('blocklyDiv', {
+  toolbox: document.getElementById('toolbox'),
+  scrollbars: true,
+  trashcan: true
 });
 
-// Canvas + Sprite Setup
-const canvas = document.getElementById('stage');
-const ctx = canvas.getContext('2d');
-let spriteImg = new Image();
-spriteImg.src = 'https://upload.wikimedia.org/wikipedia/commons/4/45/Scratch_cat.svg';
+// Sprite reference
+const sprite = document.getElementById('sprite');
+sprite.draggable = true;
 
-let sprite = {
-  x: 100,
-  y: 100,
-  width: 100,
-  height: 100,
-  dragging: false
+let offsetX, offsetY, isDragging = false;
+
+sprite.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  offsetX = e.offsetX;
+  offsetY = e.offsetY;
+});
+
+document.addEventListener('mouseup', () => isDragging = false);
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    sprite.style.left = `${e.pageX - offsetX}px`;
+    sprite.style.top = `${e.pageY - offsetY}px`;
+  }
+});
+
+// Run the workspace code
+document.getElementById('runButton').onclick = () => {
+  const code = Blockly.JavaScript.workspaceToCode(workspace);
+  try {
+    eval(code);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
-function drawStage() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(spriteImg, sprite.x, sprite.y, sprite.width, sprite.height);
-  requestAnimationFrame(drawStage);
-}
-drawStage();
-
-// Dragging logic
-canvas.addEventListener('mousedown', e => {
-  if (e.offsetX > sprite.x && e.offsetX < sprite.x + sprite.width &&
-      e.offsetY > sprite.y && e.offsetY < sprite.y + sprite.height) {
-    sprite.dragging = true;
-    canvas.style.cursor = 'grabbing';
-  }
-});
-canvas.addEventListener('mousemove', e => {
-  if (sprite.dragging) {
-    sprite.x = e.offsetX - sprite.width / 2;
-    sprite.y = e.offsetY - sprite.height / 2;
-  }
-});
-canvas.addEventListener('mouseup', () => {
-  sprite.dragging = false;
-  canvas.style.cursor = 'grab';
-});
-
-// Upload Sprite
-document.getElementById('uploadSprite').addEventListener('change', e => {
+// Upload sprite/costume
+document.getElementById('uploadSprite').addEventListener('change', function (e) {
   const file = e.target.files[0];
-  if (file) {
-    spriteImg.src = URL.createObjectURL(file);
-  }
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    sprite.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
 });
 
-// Upload Backdrop
-document.getElementById('uploadBackdrop').addEventListener('change', e => {
+// Upload backdrop
+document.getElementById('uploadBackdrop').addEventListener('change', function (e) {
   const file = e.target.files[0];
-  if (file) {
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
-    img.onload = () => {
-      canvas.style.backgroundImage = `url(${img.src})`;
-      canvas.style.backgroundSize = 'cover';
-    };
-  }
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    document.body.style.backgroundImage = `url(${event.target.result})`;
+    document.body.style.backgroundSize = 'cover';
+  };
+  reader.readAsDataURL(file);
 });
 
-// Upload Sound
-let uploadedSound = null;
-document.getElementById('uploadSound').addEventListener('change', e => {
+// Upload sound (to play later in scripts)
+let userSoundURL = null;
+document.getElementById('uploadSound').addEventListener('change', function (e) {
   const file = e.target.files[0];
-  if (file) {
-    uploadedSound = new Audio(URL.createObjectURL(file));
-    uploadedSound.play();
-  }
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    userSoundURL = event.target.result;
+  };
+  reader.readAsDataURL(file);
 });
 
-// Optional: Toggle Dark Mode
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
+// Play uploaded sound
+function playUserSound() {
+  if (userSoundURL) {
+    const audio = new Audio(userSoundURL);
+    audio.play();
+  }
 }
-
-// Placeholder for block definitions (next step)
-function defineAllBlocks() {
-  // This function will be replaced by the full 100-block JSON block definitions
-}
-defineAllBlocks();
+window.playUserSound = playUserSound;
