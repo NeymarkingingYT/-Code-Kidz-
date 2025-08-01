@@ -1,28 +1,27 @@
-// script.js — Blockly Workspace and Run Button Logic
+function drawStage() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-const workspace = Blockly.inject('blocklyDiv', {
-  toolbox: document.getElementById('toolbox')
-});
+  // Draw clones
+  clones.forEach(c => ctx.drawImage(spriteImage, c.x, c.y, 48, 48));
 
-let isRunning = false;
+  // Draw main sprite
+  ctx.drawImage(spriteImage, spriteX, spriteY, 48, 48);
 
-const runButton = document.getElementById("run-button");
-runButton.addEventListener("click", () => {
-  if (!isRunning) {
-    isRunning = true;
-    runButton.textContent = "Stop";
-    runCode();
-  } else {
-    isRunning = false;
-    runButton.textContent = "Run";
-    location.reload();
+  // Draw speech bubble if any
+  if (speechText) {
+    ctx.font = "16px sans-serif";
+    const w = ctx.measureText(speechText).width;
+    ctx.fillStyle = "white";
+    ctx.fillRect(spriteX, spriteY - 30, w + 10, 24);
+    ctx.strokeStyle = "black";
+    ctx.strokeRect(spriteX, spriteY - 30, w + 10, 24);
+    ctx.fillStyle = "black";
+    ctx.fillText(speechText, spriteX + 5, spriteY - 13);
   }
-});
 
-// Dynamically add all 500 custom blocks to toolbox (JS only, HTML has 3 shown)
-const toolboxCategory = document.querySelector('category[name="Custom Blocks"]');
-for (let i = 3; i < 500; i++) {
-  const block = document.createElement("block");
-  block.setAttribute("type", `custom_block_${i}`);
-  toolboxCategory.appendChild(block);
+  // Draw pen trail dot if down
+  if (penDown) {
+    ctx.fillStyle = penColor;
+    ctx.fillRect(spriteX + 20, spriteY + 20, 2, 2);
+  }
 }
