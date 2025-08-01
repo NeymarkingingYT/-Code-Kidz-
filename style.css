@@ -1,48 +1,21 @@
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
-  overflow: hidden;
+  padding: 20px;
 }
 
-.header {
-  background-color: orange;
-  padding: 10px;
-  text-align: center;
+#stage {
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  background-color: #fff;
 }
 
-.title {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 36px;
-  margin: 0;
-  color: black;
-  text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
-}
-
-.upload-buttons {
-  background: #eee;
-  padding: 8px 12px;
-  display: flex;
-  gap: 12px;
-}
-
-.upload-buttons button {
-  background-color: #222;
-  color: white;
-  padding: 8px 14px;
-  font-size: 14px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.upload-buttons button:hover {
-  background-color: #444;
-}
-
-/* Blockly Workspace */
-#blocklyDiv {
-  height: calc(100vh - 100px);
-  width: 100%;
+#sprite {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
 }
