@@ -89,33 +89,28 @@ function createClone() {
 
 
 
-let isRunning = false;
-let runTask = null;
 
 document.getElementById("run-button").addEventListener("click", async () => {
   const btn = document.getElementById("run-button");
 
+et isRunning = false;
+
+document.getElementById("run-button").addEventListener("click", () => {
+  const btn = document.getElementById("run-button");
+
   if (!isRunning) {
-    // Run
     isRunning = true;
     btn.textContent = "Stop";
 
     try {
-      runTask = runCode(); // from runner.js
-      await runTask;
-    } catch (e) {
-      console.error(e);
-      alert("Error during execution: " + e.message);
-    } finally {
-      isRunning = false;
-      btn.textContent = "Run";
+      runCode(); // Comes from runner.js
+    } catch (err) {
+      console.error(err);
+      alert("Error: " + err.message);
     }
   } else {
-    // Stop
     isRunning = false;
     btn.textContent = "Run";
-    // Reload the page to stop code
-    location.reload();
+    location.reload(); // Easy reset method for now
   }
 });
-
