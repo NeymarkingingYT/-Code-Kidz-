@@ -67,3 +67,29 @@ function drawSprite() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(spriteImg, spriteX, spriteY, 48, 48);
 }
+
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "when_run",
+    "message0": "when run",
+    "nextStatement": null,
+    "colour": 60,
+    "tooltip": "Runs when the project starts",
+    "hat": "cap"
+  },
+  {
+    "type": "move_steps",
+    "message0": "move %1 steps",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "STEPS",
+        "value": 10
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "Moves the sprite",
+  }
+]);
