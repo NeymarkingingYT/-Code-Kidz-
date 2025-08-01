@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Code Kidz</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🧒 Code Kidz</h1>
+    <div class="buttons">
+      <button onclick="runCode()">Run</button>
+      <button onclick="saveProject()">Save</button>
+      <button onclick="loadProject()">Load</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="blocklyDiv"></div>
+    <canvas id="stage" width="480" height="360"></canvas>
+  </main>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Events" colour="120">
+      <block type="controls_if"></block>
+      <block type="controls_repeat_ext"></block>
+    </category>
+    <category name="Motion" colour="210">
+      <block type="move_forward"></block>
+    </category>
+    <category name="Looks" colour="160">
+      <block type="change_sprite_color"></block>
+    </category>
+  </xml>
+
+  <script src="script.js"></script>
+  <script src="engine/runner.js"></script>
+</body>
+</html>
